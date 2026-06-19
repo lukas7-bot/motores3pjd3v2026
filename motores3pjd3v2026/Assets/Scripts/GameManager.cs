@@ -1,13 +1,12 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
- 
     public static GameManager Instance;
 
-    
     public enum GameState
     {
         Iniciando,
@@ -22,7 +21,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-       
         if (Instance == null)
         {
             Instance = this;
@@ -39,26 +37,30 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(GameState.Iniciando);
 
-        
-        LoadScene("Splash");
+        StartCoroutine(LoadSceneFlow("GetStarted_Scene"));
     }
-
 
     public void ChangeState(GameState newState)
     {
         CurrentState = newState;
-
         Debug.Log("Estado atual: " + CurrentState);
     }
 
-    
     public void LoadScene(string sceneName)
+    {
+        StartCoroutine(LoadSceneFlow(sceneName));
+    }
+
+    private IEnumerator LoadSceneFlow(string sceneName)
     {
         Debug.Log("Carregando cena: " + sceneName);
 
-        SceneManager.LoadScene(sceneName);
+        AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName);
+        while (!loadOp.isDone)
+        {
+            yield return null;
+        }
 
-      
         switch (sceneName)
         {
             case "Splash":
@@ -73,11 +75,16 @@ public class GameManager : MonoBehaviour
                 ChangeState(GameState.Gameplay);
 
                 AllocateInput();
+
+                Debug.Log("Tentando carregar GUI");
+
+                yield return new WaitForSeconds(0.1f);
+
+                SceneManager.LoadScene("GUI", LoadSceneMode.Additive);
                 break;
         }
     }
 
-   
     void AllocateInput()
     {
         if (playerInput != null)
@@ -90,12 +97,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   
     public void StartGame()
     {
         LoadScene("GetStarted_Scene");
     }
-
 
     public void QuitGame()
     {
