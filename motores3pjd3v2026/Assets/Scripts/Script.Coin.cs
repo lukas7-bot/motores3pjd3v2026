@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+    private static int coins = 0;
+
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCoins playerCoins =
-            other.GetComponentInParent<PlayerCoins>();
-
-        if(playerCoins != null)
+        if (other.CompareTag("Player"))
         {
-            playerCoins.AddCoin();
+            AddCoin();
             Destroy(gameObject);
         }
+    }
+
+    private void AddCoin()
+    {
+        coins++;
+
+        Debug.Log("Moedas: " + coins);
+
+        PlayerObserverManager.NotifyCoinsChanged(coins);
     }
 }
