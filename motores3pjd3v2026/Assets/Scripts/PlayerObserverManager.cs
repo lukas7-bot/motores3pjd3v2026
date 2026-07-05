@@ -8,4 +8,6 @@ public static class PlayerObserverManager
     {
         OnCoinsChanged?.Invoke(amount);
     }
+    
+    
 }
