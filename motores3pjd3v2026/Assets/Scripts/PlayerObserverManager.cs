@@ -4,10 +4,10 @@ public static class PlayerObserverManager
 {
     public static Action<int> OnCoinsChanged;
 
-    public static void NotifyCoinsChanged(int amount)
+    public static void UpdateCoins(int coins)
     {
-        OnCoinsChanged?.Invoke(amount);
+        OnCoinsChanged?.Invoke(coins);
     }
-    
-    
 }
+
+
