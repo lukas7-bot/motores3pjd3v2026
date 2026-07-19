@@ -4,11 +4,14 @@ public class Coin : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        PlayerCollector player = other.GetComponent<PlayerCollector>();
+        if (!other.CompareTag("Player"))
+            return;
 
-        if (player != null)
+        PlayerCoinCollector collector = other.GetComponent<PlayerCoinCollector>();
+
+        if (collector != null)
         {
-            player.CollectCoin();
+            collector.CollectCoin();
             Destroy(gameObject);
         }
     }

@@ -1,22 +1,28 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class CoinUI : MonoBehaviour
 {
-    [SerializeField] private TMP_Text coinText;
+    [SerializeField]
+    private TextMeshProUGUI coinText;
 
     private void OnEnable()
     {
-        PlayerObserverManager.OnCoinsChanged += UpdateUI;
+        PlayerObserverManager.OnCoinCollected += UpdateCoinText;
     }
 
     private void OnDisable()
     {
-        PlayerObserverManager.OnCoinsChanged -= UpdateUI;
+        PlayerObserverManager.OnCoinCollected -= UpdateCoinText;
     }
 
-    private void UpdateUI(int amount)
+    private void Start()
     {
-        coinText.text = "Moedas: " + amount;
+        coinText.text = "Moedas: 0";
+    }
+
+    private void UpdateCoinText(int totalCoins)
+    {
+        coinText.text = "Moedas: " + totalCoins;
     }
 }

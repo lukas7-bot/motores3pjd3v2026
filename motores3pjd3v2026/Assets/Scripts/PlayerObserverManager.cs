@@ -2,12 +2,10 @@ using System;
 
 public static class PlayerObserverManager
 {
-    public static Action<int> OnCoinsChanged;
+    public static Action<int> OnCoinCollected;
 
-    public static void UpdateCoins(int coins)
+    public static void NotifyCoinCollected(int totalCoins)
     {
-        OnCoinsChanged?.Invoke(coins);
+        OnCoinCollected?.Invoke(totalCoins);
     }
 }
-
-
