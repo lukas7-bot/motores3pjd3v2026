@@ -4,16 +4,15 @@ public class PlayerMoedaCollector : MonoBehaviour
 {
     private int moedaCount = 0;
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnTriggerEnter(Collider other)
     {
-        if (hit.gameObject.CompareTag("Moeda"))
+        if (other.CompareTag("Moeda"))
         {
             moedaCount++;
             
-            // Chama o método atualizado em português!
             PlayerObserverManager.NotifyMoedaCollected(moedaCount);
             
-            Destroy(hit.gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

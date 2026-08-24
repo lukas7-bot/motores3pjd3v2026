@@ -1850,6 +1850,7 @@ GameObject:
   - component: {fileID: 7477988938871578672}
   - component: {fileID: 3849205041736059348}
   - component: {fileID: 7888870423227802977}
+  - component: {fileID: 3612321143020905813}
   - component: {fileID: 1113369256212864554}
   - component: {fileID: 3361837022689051103}
   m_Layer: 8
@@ -2117,6 +2118,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5633379113638269974}
   m_Enabled: 1
+--- !u!114 &3612321143020905813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5633379113638269974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e87a742657d6304fb3f68204bce3d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMoedaCollector
 --- !u!114 &1113369256212864554
 MonoBehaviour:
   m_ObjectHideFlags: 0
