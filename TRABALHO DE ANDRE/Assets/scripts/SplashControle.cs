@@ -4,7 +4,7 @@ using UnityEngine;
 public class SplashScreenLoader : MonoBehaviour
 {
     [SerializeField] private float displayDuration = 2f;
-    [SerializeField] private string targetSceneName = "Menu";
+    [SerializeField] private string targetSceneName = "Menu principal";
 
     private void Start()
     {

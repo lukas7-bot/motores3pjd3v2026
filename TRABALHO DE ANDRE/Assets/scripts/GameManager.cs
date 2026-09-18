@@ -40,7 +40,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name == "_Boot")
+       
+        if (SceneManager.GetActiveScene().name == "Boot")
         {
             RequestSceneChange("Splash");
         }
@@ -79,6 +80,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
+        // Carrega a interface gráfica (GUI) de forma aditiva se a cena principal for "Jogo"
         if (nomeDaCena == "Jogo")
         {
             AsyncOperation opGUI = SceneManager.LoadSceneAsync("GUI", LoadSceneMode.Additive);
@@ -128,9 +130,9 @@ public class GameManager : MonoBehaviour
             if (uiManager.WinText != null)
             {
                 if (p1Score > p2Score)
-                    uiManager.WinText.text = "PLAYER 1 VENCEU!";
+                    uiManager.WinText.text = "PLAYER 1 GANHOU!";
                 else if (p2Score > p1Score)
-                    uiManager.WinText.text = "PLAYER 2 VENCEU!";
+                    uiManager.WinText.text = "PLAYER 2 GANHOU!";
                 else
                     uiManager.WinText.text = "EMPATE!";
             }
